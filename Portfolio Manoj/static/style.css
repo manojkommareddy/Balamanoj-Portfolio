@@ -1,0 +1,769 @@
+/* --- CSS VARIABLES (DARK MODE - DEFAULT) --- */
+:root {
+    --color-bg: #0d1117;
+    --color-bg-secondary: #161b22;
+    --color-border: #30363d;
+    --color-text-primary: #c9d1d9;
+    --color-text-secondary: #8b949e;
+    --color-brand: #58a6ff;
+    --color-nav-bg: rgba(13, 17, 23, 0.85); /* Semi-transparent dark */
+    --font-primary: 'Inter', sans-serif;
+    --font-code: 'Roboto Mono', monospace;
+    scroll-padding-top: 80px;
+}
+
+/* --- LIGHT MODE --- */
+.light-mode {
+    --color-bg: #ffffff;
+    --color-bg-secondary: #f6f8fa;
+    --color-border: #d0d7de;
+    --color-text-primary: #1f2328;
+    --color-text-secondary: #57606a;
+    --color-brand: #0969da;
+    --color-nav-bg: rgba(255, 255, 255, 0.85); /* Semi-transparent light */
+}
+
+/* --- BASIC RESET & FONT --- */
+body {
+    margin: 0;
+    font-family: var(--font-primary);
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    line-height: 1.7;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- STICKY NAV BAR --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: var(--color-nav-bg);
+    border-bottom: 1px solid var(--color-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1000;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.nav-content {
+    max-width: 960px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-brand {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+.nav-links {
+    display: none; /* Hide on mobile */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 24px;
+}
+@media (min-width: 768px) {
+    .nav-links {
+        display: flex; /* Show on desktop */
+    }
+}
+.nav-links a {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.nav-links a:hover {
+    color: var(--color-brand);
+}
+
+/* --- THEME TOGGLE --- */
+.theme-toggle {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-secondary);
+}
+.theme-toggle:hover {
+    background-color: var(--color-bg-secondary);
+}
+.theme-toggle svg {
+    width: 20px;
+    height: 20px;
+}
+.theme-toggle .sun { display: none; }
+.theme-toggle .moon { display: block; }
+.light-mode .theme-toggle .sun { display: block; }
+.light-mode .theme-toggle .moon { display: none; }
+
+
+/* --- Main Content Container --- */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 60px 24px;
+    padding-top: 130px; 
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    text-align: center;
+    padding-bottom: 60px;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 60px;
+    transition: border-color 0.3s ease;
+}
+.hero-name {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    background: -webkit-linear-gradient(45deg, var(--color-brand), var(--color-text-primary) 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero-headline {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin: 0 0 24px 0;
+}
+.hero-bio {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 32px auto;
+    color: var(--color-text-secondary);
+}
+.hero-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.hero-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background-color: var(--color-brand);
+    color: var(--color-bg);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--color-brand);
+    font-family: var(--font-primary); /* Ensure button font is correct */
+    font-size: 1rem; /* Ensure button font is correct */
+    cursor: pointer; /* Ensure button cursor is correct */
+}
+.light-mode .hero-button {
+    color: var(--color-bg);
+}
+.dark-mode .hero-button {
+    color: var(--color-text-primary);
+}
+.hero-button:hover {
+    background-color: transparent;
+    color: var(--color-brand);
+    transform: translateY(-3px);
+}
+.hero-button.secondary {
+    background-color: transparent;
+    color: var(--color-brand);
+    border: 1px solid var(--color-border);
+}
+.hero-button.secondary:hover {
+    background-color: var(--color-bg-secondary);
+    border-color: var(--color-brand);
+}
+
+/* --- SHARED SECTION STYLES --- */
+.content-section {
+    margin-bottom: 60px;
+}
+.section-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 32px;
+    position: relative;
+    padding-bottom: 10px;
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 4px;
+    background-color: var(--color-brand);
+    border-radius: 2px;
+}
+
+/* --- ### OLD ACCORDION STYLES ARE GONE ### --- */
+
+/* --- NEW: Experience Grid (4 Columns) --- */
+.experience-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 column mobile */
+    gap: 24px;
+}
+@media (min-width: 600px) {
+    .experience-grid {
+        grid-template-columns: 1fr 1fr; /* 2 columns tablet */
+    }
+}
+@media (min-width: 960px) {
+    .experience-grid {
+        grid-template-columns: 1fr 1fr 1fr 1fr; /* 4 columns desktop */
+    }
+}
+
+
+/* --- EDUCATION SECTION --- */
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+.education-card {
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 28px;
+    transition: all 0.3s ease;
+}
+.education-card:hover {
+    border-color: var(--color-brand);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.light-mode .education-card:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+.edu-school {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 8px 0;
+}
+.edu-degree {
+    font-size: 1.1rem;
+    color: var(--color-brand);
+    font-weight: 500;
+    margin: 0 0 16px 0;
+}
+.edu-date-location, .edu-gpa {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    font-family: var(--font-code);
+    margin: 0;
+}
+
+/* --- SKILLS SECTION --- */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.skill-tag {
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-family: var(--font-code);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+.skill-tag:hover {
+    color: var(--color-text-primary);
+    border-color: var(--color-brand);
+    transform: translateY(-2px);
+}
+
+/* --- TWO COLUMN GRID (CERTS & ACHIEVEMENTS) --- */
+.two-col-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+@media (min-width: 768px) {
+    .two-col-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+    }
+}
+
+/* --- LIST SECTION (CERTS & ACHIEVEMENTS) --- */
+.list-section {
+    padding-left: 20px;
+    margin: 0;
+}
+.list-section li {
+    color: var(--color-text-secondary);
+    margin-bottom: 12px;
+    line-height: 1.6;
+    font-size: 1.05rem;
+}
+.list-section li::marker {
+    color: var(--color-brand);
+    font-weight: bold;
+}
+
+/* --- PROJECTS SECTION --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+@media (min-width: 768px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* --- RE-USED CARD STYLES (FOR EXPERIENCE & PROJECTS) --- */
+.project-card {
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 28px;
+    transition: all 0.3s ease;
+    /* This is the key for alignment: */
+    display: flex;
+    flex-direction: column;
+}
+.project-card:hover {
+    border-color: var(--color-brand);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.light-mode .project-card:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+/* This wrapper grows to fill empty space, pushing the button to the bottom */
+.card-content-wrapper {
+    flex-grow: 1;
+}
+.project-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 12px 0;
+}
+.project-desc {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    margin: 0 0 24px 0;
+}
+.project-link {
+    font-weight: 600;
+    color: var(--color-brand);
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: inline-block;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: var(--font-primary);
+    cursor: pointer;
+    align-self: flex-start; /* Aligns button to the left */
+}
+.project-link span {
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+.project-link:hover span {
+    transform: translateX(5px);
+}
+
+/* --- CONTACT FORM (2-COLUMN LAYOUT) --- */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+/* This is the FIX for equal-width columns */
+@media (min-width: 900px) {
+    .contact-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+    }
+}
+.contact-info {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+}
+.contact-description {
+    margin-top: 0;
+    line-height: 1.7;
+}
+.contact-methods {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 32px;
+}
+.contact-methods li {
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+}
+.contact-methods li strong {
+    display: block;
+    color: var(--color-text-primary);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+.contact-methods li a {
+    color: var(--color-brand);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.contact-methods li a:hover {
+    text-decoration: underline;
+    filter: brightness(1.2);
+}
+/* The funny quote P.S. */
+.contact-funny-quote {
+    font-family: var(--font-code);
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    border-top: 1px solid var(--color-border);
+    padding-top: 20px;
+    margin-top: 20px;
+    font-style: italic;
+    transition: border-color 0.3s ease;
+}
+.contact-form {
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 32px;
+    transition: all 0.3s ease;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin-bottom: 8px;
+}
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    font-family: var(--font-primary);
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--color-brand);
+    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.2);
+}
+.form-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background-color: var(--color-brand);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--color-brand);
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: var(--font-primary);
+}
+.light-mode .form-button {
+    color: var(--color-bg);
+}
+.form-button:hover {
+    background-color: transparent;
+    color: var(--color-brand);
+}
+#form-status {
+    margin-top: 20px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+#form-status.success { color: #31c48d; }
+#form-status.error { color: #f05252; }
+#form-status.pending { color: var(--color-text-secondary); }
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 40px;
+    transition: all 0.3s ease;
+}
+
+/* --- STAGGERED ANIMATION --- */
+.stagger-fade > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.stagger-fade.visible > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+.stagger-fade.visible > *:nth-child(1) { transition-delay: 0.1s; }
+.stagger-fade.visible > *:nth-child(2) { transition-delay: 0.2s; }
+.stagger-fade.visible > *:nth-child(3) { transition-delay: 0.3s; }
+.stagger-fade.visible > *:nth-child(4) { transition-delay: 0.4s; }
+.stagger-fade.visible > *:nth-child(5) { transition-delay: 0.5s; }
+.stagger-fade.visible > *:nth-child(6) { transition-delay: 0.6s; }
+
+
+/* --- PROJECT/EXPERIENCE MODAL --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    z-index: 2001;
+    width: 90%;
+    max-width: 700px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    border-bottom: 1px solid var(--color-border);
+}
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--color-text-primary);
+}
+.modal-close-btn {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--color-text-secondary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+}
+.modal-content {
+    padding: 24px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+/* NEW: Sub-headline for Experience Modals */
+.modal-subhead {
+    font-family: var(--font-primary);
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    margin: -10px 0 24px 0;
+}
+.modal-subhead strong {
+    color: var(--color-text-primary);
+}
+.modal-section {
+    margin-bottom: 24px;
+}
+.modal-section h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-brand);
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.modal-list {
+    padding-left: 20px;
+    margin: 0;
+}
+.modal-list li {
+    margin-bottom: 10px;
+    color: var(--color-text-secondary);
+}
+.modal-footer {
+    padding: 24px;
+    border-top: 1px solid var(--color-border);
+    background-color: var(--color-bg-secondary);
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* --- GITHUB REDIRECT OVERLAY --- */
+.redirect-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-bg);
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+.redirect-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+.redirect-box {
+    text-align: center;
+    padding: 20px;
+}
+#redirect-message {
+    font-size: 1.5rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+#redirect-message strong {
+    color: var(--color-text-primary);
+}
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid var(--color-border);
+    border-top-color: var(--color-brand);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* --- PRINT STYLES --- */
+@media print {
+    :root {
+        --color-bg: #ffffff;
+        --color-bg-secondary: #ffffff;
+        --color-border: #d0d7de;
+        --color-text-primary: #000000;
+        --color-text-secondary: #333333;
+        --color-brand: #000000;
+    }
+    body {
+        background-color: #fff;
+        color: #000;
+    }
+    .navbar, .hero-links, .project-link, .contact-container, footer, .modal-open-btn, .theme-toggle, .redirect-overlay, .modal {
+        display: none !important;
+    }
+    .container {
+        padding-top: 0;
+        max-width: 100%;
+    }
+    .hero {
+        border-bottom: 2px solid #000;
+        text-align: left;
+        padding-bottom: 20px;
+    }
+    .hero-name {
+        font-size: 2rem;
+        color: #000;
+        background: none;
+        -webkit-text-fill-color: initial;
+    }
+    .hero-headline, .hero-bio {
+        text-align: left;
+        margin: 0;
+        font-size: 1rem;
+    }
+    .section-title {
+        font-size: 1.5rem;
+        border-bottom: 1px solid #000;
+    }
+    .section-title::after {
+        display: none;
+    }
+    /* Show all experience details for printing */
+    .experience-grid, .education-grid, .projects-grid, .two-col-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px;
+    }
+    .project-card, .education-card {
+        border: 1px solid #ccc;
+        box-shadow: none;
+        page-break-inside: avoid;
+    }
+    /* We will print the Experience Modals instead of the cards */
+    #experience .experience-grid {
+        display: none; /* Hide the grid of cards */
+    }
+    /* But we need a way to show the modal content. This is a bit of a hack.
+       We will rely on the recruiter printing the resume PDF.
+       A true print-from-modal is very complex.
+       The *existing* print style is better: it prints the PDF.
+       Let's stick to the PDF print.
+    */
+
+     /* Re-Correction: The user will just print the PDF resume.
+        So, we just hide all the interactive stuff.
+        The print styles below are correct.
+     */
+}

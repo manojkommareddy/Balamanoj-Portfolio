@@ -1,0 +1,145 @@
+/* Basic Reset & Font */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Header / Hero */
+header {
+    text-align: center;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 30px;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #111;
+    margin: 0 0 10px 0;
+}
+
+header h2 {
+    font-size: 1.5rem;
+    color: #005a9c; /* Aviation blue */
+    font-weight: 600;
+    margin: 0 0 15px 0;
+}
+
+header p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 20px auto;
+}
+
+.contact-links a {
+    display: inline-block;
+    padding: 10px 18px;
+    margin: 5px;
+    background-color: #005a9c;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.contact-links a:hover {
+    background-color: #003d6b;
+}
+
+/* Skills */
+.skills-section h3,
+.projects-section h3 {
+    font-size: 1.8rem;
+    color: #111;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.skill-tag {
+    background-color: #eef;
+    color: #003d6b;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* Projects */
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 column on mobile */
+    gap: 25px;
+}
+
+/* On larger screens, use 2 columns */
+@media (min-width: 768px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.project-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+}
+
+.project-card h4 {
+    font-size: 1.3rem;
+    color: #005a9c;
+    margin: 0 0 10px 0;
+}
+
+.project-card p {
+    font-size: 1rem;
+    margin: 0 0 20px 0;
+}
+
+.project-card a {
+    display: inline-block;
+    font-weight: 600;
+    color: #005a9c;
+    text-decoration: none;
+    border: 2px solid #005a9c;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.project-card a:hover {
+    background-color: #005a9c;
+    color: #fff;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    color: #777;
+    font-size: 0.9rem;
+}

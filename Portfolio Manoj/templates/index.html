@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ info.name }} - Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'light') {
+                document.documentElement.classList.add('light-mode');
+            }
+        })();
+    </script>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <span class="nav-brand">{{ info.name }}</span>
+            <ul class="nav-links">
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button id="theme-toggle" class="theme-toggle">
+                <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 010 1.06l-1.591 1.591a.75.75 0 11-1.06-1.06l1.591-1.591a.75.75 0 011.06 0zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.803 17.803a.75.75 0 01-1.06 0l-1.591-1.591a.75.75 0 111.06-1.06l1.591 1.591a.75.75 0 010 1.06zM12 21a.75.75 0 01-.75-.75v-2.25a.75.75 0 011.5 0V21a.75.75 0 01-.75.75zM5.106 17.803a.75.75 0 010-1.06l1.591-1.591a.75.75 0 111.06 1.06l-1.591 1.591a.75.75 0 01-1.06 0zM2.25 12a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5H3a.75.75 0 01-.75-.75zM6.106 5.106a.75.75 0 011.06 0l1.591 1.591a.75.75 0 11-1.06 1.06L6.106 6.167a.75.75 0 010-1.06z"/></svg>
+                <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 004.463-.69a.75.75 0 01.981.98 10.503 10.503 0 01-4.623 3.194 10.46 10.46 0 01-8.12 1.035A10.46 10.46 0 013.1 13.123 10.503 10.503 0 011.718 5.528.75.75 0 012.537 5.366 8.97 8.97 0 006 5.25a8.97 8.97 0 003.528-3.532z" clip-rule="evenodd" /></svg>
+            </button>
+        </div>
+    </nav>
+    
+    <div class="container">
+        
+        <header class="hero">
+            <h1 class="hero-name">{{ info.name }}</h1>
+            <h2 class="hero-headline">{{ info.headline }}</h2>
+            <p class="hero-bio">{{ info.bio }}</p>
+            <div class="hero-links">
+                <a href="{{ info.linkedin }}" target="_blank" class="hero-button">
+                    LinkedIn
+                </a>
+                <a href="https://github.com/manojkommareddy" target="_blank" class="hero-button">
+                    GitHub
+                </a>
+                <a href="{{ url_for('static', filename='Balamanoj Resume.pdf') }}" target="_blank" class="hero-button secondary">
+                    View Resume
+                </a>
+            </div>
+        </header>
+
+        <main>
+
+            <section class="content-section" id="experience">
+                <h3 class="section-title">Professional Experience</h3>
+                <div class="experience-grid stagger-fade">
+                    {% for job in experience %}
+                        <div class="project-card">
+                            <div class="card-content-wrapper">
+                                <h4 class="project-title">{{ job.company }}</h4>
+                                <p class="project-desc">{{ job.role }}</p>
+                            </div>
+                            <button class="project-link modal-open-btn" data-modal-target="#{{ job.id }}">
+                                View Details <span>&rarr;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="content-section" id="education">
+                <h3 class="section-title">Education</h3>
+                <div class="education-grid stagger-fade">
+                    {% for edu in education %}
+                        <div class="education-card">
+                            <h4 class="edu-school">{{ edu.school }}</h4>
+                            <p class="edu-degree">{{ edu.degree }}</p>
+                            <p class="edu-date-location">{{ edu.date }} | {{ edu.location }}</p>
+                            {% if edu.gpa %}
+                                <p class="edu-gpa">GPA: {{ edu.gpa }}</p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="content-section" id="skills">
+                <h3 class="section-title">Core Skills</h3>
+                <div class="skills-grid stagger-fade">
+                    {% for skill in skills %}
+                        <span class="skill-tag">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <div class="two-col-grid">
+                <section class="content-section" id="certifications">
+                    <h3 class="section-title">Certifications</h3>
+                    <ul class="list-section stagger-fade">
+                        {% for cert in certs %}
+                            <li>{{ cert }}</li>
+                        {% endfor %}
+                    </ul>
+                </section>
+                
+                <section class="content-section" id="achievements">
+                    <h3 class="section-title">Achievements</h3>
+                    <ul class="list-section stagger-fade">
+                        {% for ach in achievements %}
+                            <li>{{ ach }}</li>
+                        {% endfor %}
+                    </ul>
+                </section>
+            </div>
+
+            <section class="content-section" id="projects">
+                <h3 class="section-title">Featured Projects</h3>
+                <div class="projects-grid stagger-fade">
+                    {% for project in projects %}
+                        <div class="project-card">
+                            <div class="card-content-wrapper">
+                                <h4 class="project-title">{{ project.title }}</h4>
+                                <p class="project-desc">{{ project.short_desc }}</p>
+                            </div>
+                            <button class="project-link modal-open-btn" data-modal-target="#{{ project.id }}">
+                                View Case Study <span>&rarr;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="content-section" id="contact">
+                <h3 class="section-title">Get In Touch</h3>
+                <div class="contact-container stagger-fade">
+                    <div class="contact-info">
+                        <p class="contact-description">
+                            I'm actively seeking new opportunities and am open to collaborations. 
+                            Feel free to send me a message using the form, or connect with me directly.
+                        </p>
+                        <ul class="contact-methods">
+                            <li><strong>Email:</strong> <a href="mailto:{{ info.email }}">{{ info.email }}</a></li>
+                            <li><strong>Phone:</strong> <a href="tel:{{ info.phone }}">{{ info.phone }}</a></li>
+                            <li><strong>LinkedIn:</strong> <a href="{{ info.linkedin }}" target="_blank">linkedin.com/in/balamanoj</a></li>
+                        </ul>
+                        <p class="contact-funny-quote">
+                            {{ info.funny_quote }}
+                        </p>
+                    </div>
+                    
+                    <form id="contact-form" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="acabb3aa-1137-4c0e-8a10-d0a12efc6065" />
+                        <input type="hidden" name="subject" value="New Contact from Portfolio Website" />
+                        <div class="form-group"><label for="name" class="form-label">Name</label><input type="text" id="name" name="name" class="form-input" required></div>
+                        <div class="form-group"><label for="email" class="form-label">Email</label><input type="email" id="email" name="email" class="form-input" required></div>
+                        <div class="form-group"><label for="message" class="form-label">Message</label><textarea id="message" name="message" class="form-textarea" rows="5" required></textarea></div>
+                        <button type="submit" class="form-button">Send Message</button>
+                        <p id="form-status"></p>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2025 {{ info.name }}</p>
+        </footer>
+    </div> <div class="modal-overlay" id="modal-overlay"></div>
+
+    <div class="redirect-overlay" id="redirect-overlay">
+        <div class="redirect-box">
+            <p id="redirect-message">
+                Ah, a fellow analyst. Not satisfied with the dashboard, you want to see the <strong>raw data</strong>. My kind of person.
+                <br>
+                Redirecting to the hangar...
+            </p>
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    {% for job in experience %}
+    <div class="modal" id="{{ job.id }}">
+        <div class="modal-header">
+            <h3 class="modal-title">{{ job.role }}</h3>
+            <button class="modal-close-btn">&times;</button>
+        </div>
+        <div class="modal-content">
+            <p class="modal-subhead">
+                <strong>{{ job.company }}</strong> | {{ job.date }} | {{ job.location }}
+            </p>
+            <div class="modal-section">
+                <h4>Responsibilities & Achievements</h4>
+                <ul class="modal-list">
+                    {% for detail in job.details %}
+                        <li>{{ detail }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    {% for project in projects %}
+    <div class="modal" id="{{ project.id }}">
+        <div class="modal-header">
+            <h3 class="modal-title">{{ project.title }}</h3>
+            <button class="modal-close-btn">&times;</button>
+        </div>
+        <div class="modal-content">
+            <div class="modal-section">
+                <h4>The Goal</h4>
+                <p>{{ project.goal }}</p>
+            </div>
+            <div class="modal-section">
+                <h4>My Process</h4>
+                <ul class="modal-list">
+                    {% for step in project.process %}
+                        <li>{{ step }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h4>The Result</h4>
+                <p>{{ project.result }}</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="hero-button github-redirect-btn" data-href="{{ project.github_link }}">
+                View on GitHub
+            </button>
+        </div>
+    </div>
+    {% endfor %}
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
